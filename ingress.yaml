@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak-ingress
+  namespace: keycloak
+  annotations:
+    # Важно для Keycloak: сообщаем ему, что он за прокси
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+spec:
+  ingressClassName: public
+  rules:
+  - http: # Поле host: отсутствует, значит ловим всё, что пришло на IP
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: keycloak # Имя вашего сервиса Keycloak
+            port:
+              number: 80

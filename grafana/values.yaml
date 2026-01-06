@@ -1,0 +1,22 @@
+grafana.ini:
+  server:
+    root_url: "http://68.183.65.5:3000/" # Зовнішня адреса твоєї Графани
+  auth:
+    disable_login_form: false # Залишає можливість входу за звичайним паролем admin
+  auth.generic_oauth:
+    enabled: true
+    name: Keycloak
+    allow_sign_up: true # Автоматично створює юзера в Графані після входу через Keycloak
+    client_id: grafana
+    client_secret: "ARj5Zg3979tbBwbaPdTkw9p7N8Mvb3R6"
+    scopes: openid email profile
+    verbose_logging: true # Допомагає побачити помилки в логах пода, якщо вхід не працює
+    
+    # 1. Адреса для БРАУЗЕРА (куди тебе перенаправить сайт)
+    auth_url: http://68.183.65.5/realms/grafana/protocol/openid-connect/auth
+    
+    # 2. Адреси для СЕРВЕРА (внутрішній зв'язок між подами)
+    token_url: http://keycloak.keycloak.svc.cluster.local/realms/grafana/protocol/openid-connect/token
+    api_url: http://keycloak.keycloak.svc.cluster.local/realms/grafana/protocol/openid-connect/userinfo
+    
+    tls_skip_verify_insecure: true # Дозволяє працювати по HTTP без перевірки SSL-сертифікатів
