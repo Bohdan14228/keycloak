@@ -23,6 +23,15 @@ helm upgrade monitoring prometheus-community/kube-prometheus-stack \
 -n monitoring   -f ./grafana/values.yaml   --force   --disable-openapi-validation
 ```
 
+## When create client in Keycloak
+Root URL: http://68.183.65.5:3000/
+Valid redirect URIs: http://68.183.65.5:3000/*
+Valid post logout redirect URIs: http://68.183.65.5:3000/*
+Web origins: http://68.183.65.5:3000/
+Admin URL: http://68.183.65.5:3000/
+
+Client authentication: On
+
 ## Tutorial Resources
 - Set Up Kubernetes Cluster with Docker Desktop: [Kubernetes Cluster Setup](https://youtu.be/IBkU4dghY0Y)
 - Install Helm on Mac and Windows: [Install Helm](https://rslim087a.github.io/rayanslim/lesson.html?course=prometheus-grafana-monitoring-course&lesson=helm-installation)
